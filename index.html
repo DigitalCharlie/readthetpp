@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=yes">
+    <meta name="description" content="">
+    <meta name="author" content="Digital Charlie">
+    <meta property="og:title" content="Finally, a chance to read the contents of the TPP."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://readthetpp.com"/>
+    <meta property="og:image" content="https://www.battleforthenet.com/images/share_images/InternetVoteShare3.png"/>
+    <meta property="og:site_name" content="Read the TPP"/>
+    <meta property="fb:admins" content="612663871"/>
+    <meta property="og:description" content="It's been so secret so long."/>
+    <meta property="twitter:title" content="Read the TPP" />
+    <meta property="twitter:description" content="" />
+    <title>Read the TPP</title>
+    <link href="css/readthetpp.css" rel="stylesheet"/>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+</head>
+<body>
+
+
+
+<span id="readbutton" class="readbutton">Read the TPP</span>
+
+<div id="testtimeout" style="margin-left:-100px;margin-top:-25px;width:200px;height:50px;position:absolute;top:50%;left:50%;background-color:#ffffff;display:none;z-index:1">JUST KIDDING YOU CAN'T. DEAL WITH IT.</div>
+<div id="centerdiv" class="centerdiv"></div>
+
+<script>
+    Math.Vector = function (x,y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    Math.Vector.prototype = {
+        clone: function () {
+            return new Math.Vector(this.x, this.y);
+        },
+        negate: function () {
+            this.x = -this.x;
+            this.y = -this.y;
+            return this;
+        },
+        neg: function () {
+            return this.clone().negate();
+        },
+        addeq: function (v) {
+            this.x += v.x;
+            this.y += v.y;
+            return this;
+        },
+        subeq: function (v) {
+            return this.addeq(v.neg());
+        },
+        add: function (v) {
+            return this.clone().addeq(v);
+        },
+        sub: function (v) {
+            return this.clone().subeq(v);
+        },
+        multeq: function (c) {
+            this.x *= c;
+            this.y *= c;
+            return this;
+        },
+        diveq: function (c) {
+            this.x /= c;
+            this.y /= c;
+            return this;
+        },
+        mult: function (c) {
+            return this.clone().multeq(c);
+        },
+        div: function (c) {
+            return this.clone().diveq(c);
+        },
+
+        dot: function (v) {
+            return this.x * v.x + this.y * v.y;
+        },
+        length: function () {
+            return Math.sqrt(this.dot(this));
+        },
+        normal: function () {
+            return this.clone().diveq(this.length());
+        }
+    };
+
+    function evade(evt) {
+        var $this = $(this),
+            corner = $this.offset(),
+            center = {x: corner.left + $this.outerWidth() / 2, y: corner.top + $this.outerHeight() / 2},
+            dist = new Math.Vector(center.x - evt.pageX, center.y - evt.pageY),
+            closest = $this.outerWidth() / 2;
+        
+        // proximity test
+        if (dist.length() >= closest) {
+            return;
+        }
+
+        // calculate new position
+        var delta = dist.normal().multeq(closest).sub(dist),
+            newCorner = {left: corner.left + delta.x, top: corner.top + delta.y};
+
+        // bounds check
+        var padding = parseInt($this.css('padding-left'));
+        if (newCorner.left < -padding) {
+            newCorner.left = -padding;
+        } else if (newCorner.left + $this.outerWidth() - padding > $(document).width()) {
+            newCorner.left = $(document).width() - $this.outerWidth() + padding;
+        }
+        if (newCorner.top < -padding) {
+            newCorner.top = -padding;
+        } else if (newCorner.top + $this.outerHeight() - padding > $(document).height()) {
+            newCorner.top = $(document).height() - $this.outerHeight() + padding;
+        }
+
+        // move bumper
+        $this.offset(newCorner);
+    }
+
+    function beginEvade() {
+        $(this).bind('mousemove', evade);
+    }
+
+    function endEvade() {
+       $(this).unbind('mousemove', evade);
+    }
+
+    $(function () {
+        $('.readbutton').wrap('<span class="bumper" />')
+        $('.bumper').bind('mouseover', beginEvade);
+        $('.bumper').bind('mouseout', endEvade);
+});
+</script>
+
+<script>
+    document.getElementById("centerdiv").onmouseenter=function(){
+        setTimeout(function(){document.getElementById("testtimeout").style.display = "block";},3000);
+    }
+
+</script>
+
+
+
+</body>
+</html>
