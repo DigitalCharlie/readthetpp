@@ -25,12 +25,31 @@
 </head>
 <body>
 
+    <header>
+        <img id="ustrlogo" src="images/USTRlogo.png" style="display:block;">
+        <img id="corplogo" src="images/CORPlogo.png" style="display:none;">
+    </header>
 
+    <div class="msg">
+        <h3>
+            There's nothing secret about the Trans-Pacific Partnership. It won't kill jobs, undermine environmental regulations, or censor the Internet. Click the button below to access the entire agreement.
+        </h3>
+    </div>
 
-<span id="readbutton" class="readbutton">Read the TPP</span>
+    <span id="readbutton" class="readbutton">Read the TPP</span>
+    <div id="centerdiv" class="centerdiv"></div>
 
-<div id="testtimeout" style="margin-left:-100px;margin-top:-25px;width:200px;height:50px;position:absolute;top:50%;left:50%;background-color:#ffffff;display:none;z-index:1">JUST KIDDING YOU CAN'T. DEAL WITH IT.</div>
-<div id="centerdiv" class="centerdiv"></div>
+    <div id="showfooter"></div>
+    <div id="footer">
+        <h3>
+            Okay, so it's a little secret — secret enough that only certain Members of Congress can read it, and only if they go in alone, with not electronics, and nothing to take notes on. Blah blah blah blah blah. Some buttons.
+        </h3>
+        <div class="footerbuttons">
+            <a class="button facebook" href="http://www.facebook.com/sharer/sharer.php?u=http://www.fuckfasttrack.com/" target="_blank">Share on Facebook</a> 
+            <a class="button twitter" href="#" taret="_blank">Share on Twitter</a>
+            <a class="button facebook" style="background-color: #2dbc8f;" href="http://www.stopfasttrack.com" target="_blank">Take Action</a>
+        </div>
+    </div>
 
 <script>
     Math.Vector = function (x,y) {
@@ -142,7 +161,11 @@
 
 <script>
     document.getElementById("centerdiv").onmouseenter=function(){
-        setTimeout(function(){document.getElementById("testtimeout").style.display = "block";},3000);
+        setTimeout(function(){
+            document.getElementById("ustrlogo").style.display = "none";
+            document.getElementById("corplogo").style.display = "block";
+            $('#footer').addClass("show");
+        },3500);
     }
 
 </script>
