@@ -75,10 +75,10 @@ body {
    transition:all 0.5s ease-in-out;
    -webkit-transition:all 0.5s ease-in-out;
 }
+
 #footer.show
 {
     height:300px;
-    /*We can animate various properties of the footer*/
     opacity:1;
     color:#333;
     background: #CCC;
@@ -159,6 +159,7 @@ a.button.submit {
         opacity:1;
         color:#333;
         background: #CCC;
+        z-index: 2;
         
        -moz-transition:all 0.5s ease-in-out;
        -o-transition:all 0.5s ease-in-out;
