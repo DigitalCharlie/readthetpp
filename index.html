@@ -156,6 +156,13 @@
         $('.readbutton').wrap('<span class="bumper" />')
         $('.bumper').bind('mouseover', beginEvade);
         $('.bumper').bind('mouseout', endEvade);
+            $(".bumper").on("mousedown",function(){
+            setTimeout(function(){
+            document.getElementById("ustrlogo").style.display = "none";
+            document.getElementById("corplogo").style.display = "block";
+            $('#footer').addClass("show");
+        },2500);
+        });   
 });
 </script>
 
@@ -168,16 +175,6 @@
         },2500);
     }
 
-</script>
-
-<script>
-    $(".bumper").on("mousedown",function(){
-            setTimeout(function(){
-            document.getElementById("ustrlogo").style.display = "none";
-            document.getElementById("corplogo").style.display = "block";
-            $('#footer').addClass("show");
-        },2500);
-        });                       
 </script>
 
 </body>
