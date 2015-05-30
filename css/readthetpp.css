@@ -5,6 +5,7 @@ body {
     color:#0e293a;
     /*color:#008cba;*/
     text-align:center;
+    overflow-x: hidden;
 }
 
 .readbutton {
