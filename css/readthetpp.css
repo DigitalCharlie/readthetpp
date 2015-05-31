@@ -171,11 +171,16 @@ a.button.submit {
     max-width:25%;
 }
 
+.h3 {
+    font-size:.9em;
+    font-weight:normal;
+}
+
 @media screen and (min-width: 500px) {
 
     .bumper {
     z-index:100;
-}
+    }
 
     .footerbuttons {
         width:100%;
@@ -186,7 +191,6 @@ a.button.submit {
         width: 190px;
         margin: 0px 5px;
         border-radius: 5px;
-
     }
 
     #footer.show {
@@ -196,9 +200,13 @@ a.button.submit {
         color:#333;
         background: #CCC;
         z-index: 2;
-        
        -moz-transition:all 0.5s ease-in-out;
        -o-transition:all 0.5s ease-in-out;
        transition:all 0.5s ease-in-out;
        -webkit-transition:all 0.5s ease-in-out;
+    }
+
+    .h3 {
+        font-size:1.17em;
+        font-weight:bold;
     }
