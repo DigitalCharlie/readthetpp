@@ -115,7 +115,7 @@ header img {
     max-width:85%;
     margin-left: auto;
     margin-right:auto;
-    margin-top:40px;
+    margin-top:20px;
     margin-bottom:40px;
 
 }
@@ -204,6 +204,10 @@ h3 {
        -o-transition:all 0.5s ease-in-out;
        transition:all 0.5s ease-in-out;
        -webkit-transition:all 0.5s ease-in-out;
+    }
+
+    .msg {
+        margin-top:40px;
     }
 
     h3 {
