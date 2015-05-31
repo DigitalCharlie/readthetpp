@@ -147,6 +147,22 @@ a.button.submit {
     background: #2E0854;
 }
 
+.disclaimer {
+    background-color:#0e293a; 
+    position:absolute;
+    bottom:0;
+    width:100%;
+    font-size:10px;
+    text-align:center;
+    color:#fff;
+    padding:20px 10px 5px 10px;
+}
+
+.disclaimer img {
+    margin:0px 15px;
+    max-width:25%;
+}
+
 @media screen and (min-width: 500px) {
 
     .bumper {
