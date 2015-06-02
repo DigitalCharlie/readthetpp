@@ -158,7 +158,6 @@
 
     function beginEvade() {
         $(this).bind('mousemove', evade);
-        showFooter ();
     }
 
     function endEvade() {
@@ -169,13 +168,19 @@
         $('.readbutton').wrap('<span class="bumper" />')
         $('.bumper').bind('mouseover', beginEvade);
         $('.bumper').bind('mouseout', endEvade);
+            $(".bumper").on("mousedown",function(){
+            setTimeout(function(){
+            document.getElementById("ustrlogo").style.display = "none";
+            document.getElementById("corplogo").style.display = "block";
+            $('#footer').addClass("show");
+        },2500);
+        });   
 });
 </script>
 
 <script>
-
-function showFooter() {
-    setTimeout(function(){
+    document.getElementById("centerdiv").onmouseenter=function(){
+        setTimeout(function(){
             document.getElementById("ustrlogo").style.display = "none";
             document.getElementById("corplogo").style.display = "block";
             $('#footer').addClass("show");
@@ -185,7 +190,6 @@ function showFooter() {
     }
 
 </script>
-
 
 <script type="text/javascript">
 var _sf_async_config={uid:47331,domain:"readthetpp.com",useCanonical:true};
