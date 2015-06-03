@@ -244,7 +244,7 @@ h3 {
     }
 
     #footer.show {
-        height:200px;
+        height:250px;
         /*We can animate various properties of the footer*/
         opacity:1;
         color:#333;
