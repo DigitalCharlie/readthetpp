@@ -78,7 +78,7 @@ body {
 }
 
 #footer.show {
-    height:450px;
+    height:470px;
     opacity:1;
     color:#333;
     background: #CCC;
@@ -244,7 +244,7 @@ h3 {
     }
 
     #footer.show {
-        height:250px;
+        height:275px;
         /*We can animate various properties of the footer*/
         opacity:1;
         color:#333;
