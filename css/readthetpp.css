@@ -129,6 +129,7 @@ a.button {
     height: 40px;
     line-height: 40px;
     font-size: 12px;
+    font-weight: bold;
     letter-spacing: 1px;
     text-transform: uppercase;
     text-decoration: none;
@@ -153,6 +154,10 @@ a.button.twitter {
 
 a.button.submit {
     background: #2E0854;
+}
+
+a.button.action {
+    background-color: #2dbc8f;
 }
 
 .disclaimer {
@@ -191,40 +196,305 @@ h3 {
     border-style:solid;
 }
  
-    #tooltip:after /* triangle decoration */
-    {
-        width: 0;
-        height: 0;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-top: 10px solid #111;
-        content: '';
-        position: absolute;
-        left: 50%;
-        bottom: -10px;
-        margin-left: -10px;
+#tooltip:after /* triangle decoration */
+{
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #111;
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    margin-left: -10px;
+}
+ 
+#tooltip.top:after
+{
+    border-top-color: transparent;
+    border-bottom: 10px solid #111;
+    top: -20px;
+    bottom: auto;
+}
+
+#tooltip.left:after
+{
+    left: 10px;
+    margin: 0;
+}
+
+#tooltip.right:after
+{
+    right: 10px;
+    left: auto;
+    margin: 0;
+}
+
+a.social {
+    margin-left: 5px;
+    margin-right: 5px;
+    display: inline-block;
+    padding: 0px 15px 0px 40px;
+    height: 30px;
+    line-height: 30px;
+    position: relative;
+    box-sizing: border-box;
+    color: white;
+    text-decoration: none;
+    border-radius: 100px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: verdana, helvetica;
+    font-weight: bold;
+}
+
+a.social::before {
+    width: 20px;
+    height: 20px;
+    display: block;
+    background: transparent url("https://s3.amazonaws.com/fftf-cms/static/campaign/img/share.png") no-repeat scroll 0px 0px / 170px 20px;
+    position: absolute;
+    top: 4px;
+    left: 14px;
+    content: "";
+}
+a.social.donate::before {
+    background: url("https://s3.amazonaws.com/fftf-cms/static/img/fav.ico");
+    background-size: 16px 16px;
+    width: 16px;
+    height: 16px;
+    top: 7px;
+}
+a.social.facebook {
+    background: #3b5a95;
+}
+a.social.twitter {
+    background: #51c9f0;
+}
+a.social.donate {
+    background-color: #fab;
+}
+.social.facebook::before {
+    background-position: -150px 0px;
+}
+.social.twitter::before {
+    background-position: -100px 0px;
+}
+
+.overlay {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(0, 0, 0, .66);
+    display: none;
+    z-index: 9001;
+
+    -webkit-transition: opacity 0.4s ease-out;
+            transition: opacity 0.4s ease-out;
+}
+.overlay.invisible {
+    pointer-events: none;
+    opacity: 0;
+
+    -webkit-transition: opacity 0.4s ease-out;
+            transition: opacity 0.4s ease-out;
+}
+.overlay .gutter {
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+
+    -webkit-transition: margin-top 0.4s ease-out;
+            transition: margin-top 0.4s ease-out;
+}
+.overlay.invisible .gutter {
+    margin-top: -100%;
+}
+.overlay .gutter .modal {
+    display: inline-block;
+    max-width: 100%;
+    color: black;
+    margin: 0px auto;
+    position: relative;
+    text-align: center;
+
+    margin-top: 50px;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, .3);
+}
+.overlay .gutter .modal strong {
+    font-weight: bold;
+}
+.modal a.close {
+    position: absolute;
+    right: 7px;
+    top: 6px;
+    cursor:pointer;
+    color: #fff;
+    border-radius: 30px;
+    background: black;
+    font-size: 31px;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 35px;
+    text-align: center;
+    width: 35px;
+    height: 35px;
+    text-decoration: none;
+    opacity: .7;
+    z-index: 9002; /* A LEVEL BEYOND over 9000 */
+}
+.modal a.close:hover {
+    opacity: 1;
+}
+.modal a.close:before {
+    line-height: 35px;
+    content: "×";
+}
+.modal a.close.lite {
+    color: #e1e1e1;
+    font-size: 40px;
+    opacity: 1;
+    background: #fff;
+    font-weight: bold;
+}
+.modal a.close.lite:hover {
+    color: #ccc;
+}
+.modal .explanation {
+    background: #fff;
+    padding: 55px 0px 0px 0px;
+    font-size: 22.42px;
+    line-height: 29px;
+    max-width: 745px;
+}
+.modal .explanation img.example {
+    
+    width: 200px;
+    height: auto;
+}
+.modal .explanation p {
+    margin: 0px;
+    padding: 0px 30px 35px 30px;
+}
+.modal .explanation strong.highlight {
+    color: #ff4e52;
+}
+.modal .explanation .example {
+    background: #ededed url(../images/modal_background.png) left top repeat-x;
+    padding: 20px 15px 25px 15px;
+    font-size: 17px;
+    color: #686868;
+}
+.modal .explanation .example .tweet {
+    margin: 5px auto 20px auto;
+    max-width: 575px;
+    border-radius: 10px;
+    background: #fff;
+    padding: 25px 25px 0px 25px;
+    font-size: 19px;
+    color: #676767;
+    text-align: left;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, .1);
+}
+.modal .explanation .example .tweet em {
+    color: #66d6ff;
+    font-weight: bold;
+}
+.modal .explanation .example .tweet span {
+    text-decoration: underline;
+}
+.modal .explanation .example .tweet .byline {
+    color: #cfcfd0;
+    font-size: 10px;
+    padding-bottom: 5px;
+    margin: 0px 0px 0px 0px;
+}
+.modal .explanation .example .tweet img.thumbnail {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    margin-bottom: 5px;
+    float: left;
+    border-radius: 4px;
+}
+.modal .explanation .example button {
+    border: 0px;
+    background: #fe4b60;
+    height: 58px;
+    line-height: 56px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+    font-size: 19px;
+    text-align: center;
+    width: 226px;
+    cursor: pointer;
+    margin: 3px 0px;
+}
+.modal .explanation .example button:hover {
+    background: #ee3b50;
+}
+.modal .explanation .example button.gray {
+    background: #bbb;
+}
+.modal .explanation .example button.gray:hover {
+    background: #aaa;
+}
+.modal .explanation .example input {
+    display: inline-block;
+    width: 25%;
+    box-sizing: border-box;
+    border-left: 1px solid #aaa;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 5px;
+    padding: 10px 15px;
+    font-size: 19px;
+    font-family: Helvetica, Arial;
+    font-weight: 500;
+}
+.modal .explanation .example input.long {
+    width: 50%;
+    height: 57px;
+}
+.modal .explanation .example input.right {
+    border-right: 1px solid #aaa;
+}
+.modal .explanation .example textarea {
+    width: 100%;
+    border: 1px solid #aaa;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    font-size: 14px;
+    height: 90px;
+}
+.modal .explanation .example input.error, .modal .explanation .example textarea.error {
+    background: #fee;
+}
+.modal .explanation .example span.disclaimer {
+    font-size: 13px;
+    line-height: 1em;
+}
+
+@media screen and (max-width: 680px) {
+    .overlay .gutter .modal {
+        margin-top: 0px;
     }
- 
-        #tooltip.top:after
-        {
-            border-top-color: transparent;
-            border-bottom: 10px solid #111;
-            top: -20px;
-            bottom: auto;
-        }
- 
-        #tooltip.left:after
-        {
-            left: 10px;
-            margin: 0;
-        }
- 
-        #tooltip.right:after
-        {
-            right: 10px;
-            left: auto;
-            margin: 0;
-        }
+    .modal .explanation .example input {
+        width: 100%;
+        border-right: 1px solid #aaa;
+    }
+    .modal .explanation .example input.long {
+        width: 100%;
+    }
+
+}
 
 @media screen and (min-width: 500px) {
 
@@ -264,3 +534,4 @@ h3 {
         font-size:1.17em;
         font-weight:bold;
     }
+}

@@ -20,8 +20,8 @@
     <link href="css/readthetpp.css" rel="stylesheet"/>
     <link rel="shortcut icon" href="images/favicon.ico"/>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 
 </head>
 <body>
@@ -51,10 +51,10 @@
             </p>
         </div>
         <div class="footerbuttons">
-            <a class="button facebook" style="background-color: #2dbc8f;" href="https://www.stopfasttrack.com/?email=1#takeaction" target="_blank">Take Action</a>
+            <a class="button action" href="https://www.stopfasttrack.com/?email=1#takeaction" target="_blank">Take Action</a>
             <a class="button facebook" href="http://www.facebook.com/sharer/sharer.php?u=http://www.readthetpp.com/" target="_blank">Share on Facebook</a> 
             <a class="button twitter" href="https://twitter.com/intent/tweet?text=I%20found%20a%20site%20where%20you%20can%20read%20the%20full%20text%20of%20the%20%23TPP!%20Check%20it%20out%20and%20retweet%20to%20spread%20the%20word!%20http%3A%2F%2Fwww.readthetpp.com%2F" target="_blank">Share on Twitter</a>
-            <p style="font-weight:bold;"><a href="https://wikileaks.org/pledge/#rd-6" target="_blank">Donate to help WikiLeaks uncover the remaining chapters</a>
+            <p style="font-weight:bold;"><a href="#" target="_blank" id="phone_direct_link">Congress is voting on TPP this week! Dial 1-201-TPP-LIES (201-877-5437) to talk to your reps!</a>
         </div>
     </div>
     <div class="disclaimer"> 
@@ -64,6 +64,52 @@
 
         <p style="padding-left:10px;padding-right:10px;">This page was not created by the Office of the United States Trade Representative. It was made as a political statement about the TPP. No copyright intended.</p>
     </div>
+
+<div class="overlay invisible" id="thanks_modal">
+    <div class="gutter">
+        <div class="modal">
+            <a class="close lite"></a>
+            <div class="explanation">
+                <p>
+                    <strong id="call_heading">Call Congress and tell them to stop the TPP!</strong><br/>
+                    Enter your phone number and we'll call your phone and connect
+                    you to your reps. We'll tell you what to say on the next step.
+                </p>
+                <div class="example">
+                    <form action="https://call-congress.fightforthefuture.org/submit" method="post">
+                        <input id="call_phone" class="long right" type="text" placeholder="555-555-5555"/>
+                        <button type="submit">Call Congress</button>
+                    </form>
+                    Can't call? Share this page!<br/>
+                    <a class="social facebook" href="http://www.facebook.com/sharer/sharer.php?u=http://www.readthetpp.com" target="_blank">Share</a>
+                    <a class="social twitter" href="https://twitter.com/intent/tweet?text=I%20found%20a%20site%20where%20you%20can%20read%20the%20full%20text%20of%20the%20%23TPP!%20Check%20it%20out%20and%20retweet%20to%20spread%20the%20word!%20http%3A%2F%2Fwww.readthetpp.com%2F" target="_blank">Tweet</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay invisible" id="calling_modal">
+    <div class="gutter">
+        <div class="modal">
+            <a class="close lite"></a>
+            <div class="explanation">
+                <p>
+                    <strong>We're calling your phone! Here's what to say:</strong>
+                    <br/>
+                    Hello, I'm calling to urge my representative to oppose Fast Track for the Trans-Pacific Partnership agreement. Congress needs time to debate and amend trade agreements that affect all of us. Fast Track is undemocratic, and I expect my lawmakers to oppose it now and into the future.
+                </p>
+                <div class="example">
+                    Please share this page!<br/>
+                    <a class="social facebook" href="http://www.facebook.com/sharer/sharer.php?u=http://www.readthetpp.com" target="_blank">Share</a>
+                    <a class="social twitter" href="https://twitter.com/intent/tweet?text=I%20found%20a%20site%20where%20you%20can%20read%20the%20full%20text%20of%20the%20%23TPP!%20Check%20it%20out%20and%20retweet%20to%20spread%20the%20word!%20http%3A%2F%2Fwww.readthetpp.com%2F" target="_blank">Tweet</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     Math.Vector = function (x,y) {
@@ -171,7 +217,86 @@
         $('.readbutton').wrap('<span class="bumper" />')
         $('.bumper').bind('mouseover', beginEvade);
         $('.bumper').bind('mouseout', endEvade);
-});
+        $('.button.action').click(function(e) {
+            e.preventDefault();
+            show_modal('thanks_modal');
+        });
+        $('#phone_direct_link').click(function(e) {
+            e.preventDefault();
+            show_modal('thanks_modal');
+        });
+    });
+
+    var show_modal = function(el) {
+        var overlay = document.getElementById(el);
+        overlay.style.display = 'block';
+        setTimeout(function() { overlay.className = 'overlay'; }, 30);
+    }
+
+    var hide_modal = function(el) {
+        var overlay = document.getElementById(el);
+        overlay.className = 'overlay invisible';
+        setTimeout(function() { overlay.style.display = 'none'; }, 400);
+    }
+
+    var bind_hide = function(el) {
+        document.querySelector('#'+el+' .close.lite').addEventListener(
+            'click', function(e) {
+                e.preventDefault();
+                hide_modal(el);
+            }, false
+        );
+    }
+
+    var close_modals = ['thanks_modal', 'calling_modal'];
+
+    var validate_phone = function(num) {
+        num = num.replace(/\s/g, '').replace(/\(/g, '').replace(/\)/g, '');
+        num = num.replace("+", "").replace(/\-/g, '');
+
+        if (num.charAt(0) == "1")
+            num = num.substr(1);
+
+        if (num.length != 10)
+            return false;
+
+        return num;
+    };
+
+    for (var i=0; i<close_modals.length; i++)
+        bind_hide(close_modals[i]);
+
+    document.querySelector('#thanks_modal form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        console.log('Call submit');
+
+        var phone = document.getElementById('call_phone').value;
+
+        if (!validate_phone(phone))
+            return alert('Please enter a valid US phone number!');
+
+        var data = new FormData();
+        data.append('campaignId', 'stop-tpp');
+        data.append('userPhone', validate_phone(phone));
+
+        var url = 'https://call-congress.fightforthefuture.org/create';
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                console.log('sent!', xhr.response);
+            }
+        }.bind(this);
+        xhr.open("post", url, true);
+        xhr.send(data);
+
+        hide_modal('thanks_modal');
+        show_modal('calling_modal');
+
+    }, false);
+
+
+
 </script>
 
 <script>
